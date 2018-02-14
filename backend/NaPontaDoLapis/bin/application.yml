@@ -1,0 +1,61 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    active:
+    - dev
+  application:
+    name: NaPontaDoLapis
+  
+---
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/napontadolapis_dev
+    username: napontadolapis_dev
+    password: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true  
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+            
+---
+spring:
+  profiles: uat
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/napontadolapis_dev
+    username: napontadolapis
+    password: dev
+  jpa:    
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+          
+---
+spring:
+  profiles: prd
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/napontadolapis
+    username: napontadolapis
+    password: suce$$o
+    # Keep the connection alive if idle for a long time 
+    dbcp2:
+      test-while-idle: true
+      validation-query: select 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
